@@ -8,10 +8,10 @@
 {% block contents %}
 <section>
   <section class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-    <!-- total tasks -->
+    <!-- total events -->
     <a href="{% url 'admin-dashboard' %}">
       <div class="border bg-white p-5 rounded-md">
-        <div class="text-gray-400">Total tasks</div>
+        <div class="text-gray-400">Total events</div>
 
         <div class="flex items-center justify-between mt-5">
           <div class="text-4xl font-semibold">{{counts.total_events}}</div>
@@ -57,10 +57,10 @@
       </div>
     </div>
 
-    <!-- upcoming tasks -->
+    <!-- upcoming events -->
     <a href="{% url 'admin-dashboard' %}?type=upcoming">
       <div class="border bg-white p-5 rounded-md">
-        <div class="text-gray-400">Upcoming tasks</div>
+        <div class="text-gray-400">Upcoming events</div>
 
         <div class="flex items-center justify-between mt-5">
           <div class="text-4xl font-semibold">{{counts.upcoming}}</div>
@@ -82,10 +82,10 @@
       </div>
     </a>
 
-    <!-- previous tasks -->
+    <!-- previous events -->
     <a href="{% url 'admin-dashboard' %}?type=previous">
       <div class="border bg-white p-5 rounded-md">
-        <div class="text-gray-400">Previous tasks</div>
+        <div class="text-gray-400">Previous events</div>
 
         <div class="flex items-center justify-between mt-5">
           <div class="text-4xl font-semibold">{{counts.previous}}</div>
@@ -126,9 +126,9 @@
 
   <!-- admin dashboard section -->
   <!-- prettier-ignore -->
-  {% block tasks %}
+  {% block events %}
   <!-- prettier-ignore -->
-  {% endblock tasks %}
+  {% endblock events %}
 </section>
 <!-- prettier-ignore -->
 {% endblock contents %}

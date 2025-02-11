@@ -3,10 +3,10 @@
 <!-- prettier-ignore -->
 {% block title %} Admin Dashboard {% endblock title %}
 <!-- prettier-ignore -->
-{% block tasks %}
+{% block events %}
 <!-- prettier-ignore -->
 <section class="my-10 text-xs md:text-base lg:text-base">
-  <!-- tasks -->
+  <!-- events -->
   <div class="bg-white rounded-lg shadow-sm border">
     <!-- table header -->
     <div
@@ -20,7 +20,7 @@
     </div>
 
     <!-- table elements -->
-    {% for event in tasks %}
+    {% for event in events %}
     <div class="divide-y divide-gray-100">
       <div class="grid grid-cols-5 items-center p-4 gap-4">
         <!-- NAME -->
@@ -69,4 +69,4 @@
   </div>
 </section>
 <!-- prettier-ignore -->
-{% endblock tasks %}
+{% endblock events %}

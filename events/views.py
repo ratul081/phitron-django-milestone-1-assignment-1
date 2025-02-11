@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from tasks.models import Event, Participant, Category
+from events.models import Event, Participant, Category
 from django.db.models import Q, Count, Sum
 from datetime import date
-from tasks.forms import EventModelForm, ParticipantModelForm, CategoryModelForm
+from events.forms import EventModelForm, ParticipantModelForm, CategoryModelForm
 from django.contrib import messages
 
 # Create your views here.
@@ -130,18 +130,18 @@ def admin_dashboard(request):
 	todays = base_query.filter(date = date.today())
 
 	if type == "upcoming":
-		tasks = base_query.filter(date__gt = date.today())
+		events = base_query.filter(date__gt = date.today())
 
 	elif type == "previous":
-		tasks = base_query.filter(date__lt = date.today())
+		events = base_query.filter(date__lt = date.today())
 
 	elif type == "all":
-		tasks = base_query.all()
+		events = base_query.all()
 
 
 
 	context = {
-		"tasks": tasks,
+		"events": events,
 		"counts": load_counts(),
 		"todays": todays
 	}
@@ -157,3 +157,13 @@ def today_events(request):
 	}
 
 	return render(request, "today_events/today_events.html", context)
+
+
+def event_list(request):
+    query = request.GET.get('q', '')  # Get search query from request
+    events = Event.objects.all()
+
+    if query:
+        events = events.filter(name__icontains=query) | events.filter(location__icontains=query)
+
+    return render(request, 'search/event_list.html', {'events': events, 'query': query})

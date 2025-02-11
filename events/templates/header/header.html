@@ -18,7 +18,7 @@
       <div class="flex items-center justify-between max-w-[1200px] mx-auto">
         <div>
           <a
-            href="{% url 'today-tasks' %}"
+            href="{% url 'today-events' %}"
             class="text-lg lg:text-3xl font-semibold"
             >Event Manage</a
           >
@@ -50,13 +50,18 @@
               Add Participant
             </button>
           </form>
+          <form action="{% url 'event_list' %}" method="POST">
+            {% csrf_token %}
+            <button class="px-3 py-1 font-semibold text-xl hover:text-red-800">
+              Search
+            </button>
+          </form>
         </div>
       </div>
     </header>
 
     <main class="max-w-[1200px] mx-auto">
-      {% block contents %}
-      {% endblock contents %}
+      {% block contents %} {% endblock contents %}
     </main>
   </body>
 </html>
