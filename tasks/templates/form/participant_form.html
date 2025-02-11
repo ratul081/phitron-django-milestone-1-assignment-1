@@ -1,0 +1,24 @@
+<!-- prettier-ignore -->
+{% extends "header/header.html" %}
+<!-- prettier-ignore -->
+{% block title %}Participant Form{% endblock title %}
+<!-- prettier-ignore -->
+{% block contents %}
+<!-- prettier-ignore -->
+<section>
+	<div class="border w-full mx-auto my-10 p-5">
+		<div class="text-center text-3xl mb-5">Add A Participant</div>
+		<form method="POST">
+			{% csrf_token %}
+			{{participant_form}}
+			<button type="submit" class="px-2 py-1 bg-cyan-700 rounded-lg text-white mt-5">Submit</button>
+		</form>
+		{% if messages %}
+			{% for message in messages %}
+				<div class="px-2 py-1 {% if message.tags == 'success' %} text-green-500 {% endif %}">{{message}}</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+</section>
+<!-- prettier-ignore -->
+{% endblock contents %}

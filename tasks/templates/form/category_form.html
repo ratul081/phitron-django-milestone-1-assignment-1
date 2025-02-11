@@ -1,0 +1,30 @@
+<!-- prettier-ignore -->
+{% extends "header/header.html" %}
+<!-- prettier-ignore -->
+{% block title %}Category Form{% endblock title %}
+<!-- prettier-ignore -->
+{% block contents %}
+<!-- prettier-ignore -->
+<section>
+	<div class="border w-full mx-auto my-10 p-5">
+
+		<div class="text-center text-3xl mb-5">Add A Category</div>
+		<form action="{% url 'add-category' %}" method="POST">
+			{% csrf_token %}
+			{{category_form}}
+			<button type="submit" class="px-4 py-1 bg-cyan-700	 rounded-lg text-white">Submit</button>
+		</form>
+		{% if messages %}
+			{% for message in messages %}
+				{% if message.tags == 'success' %}
+				<div class="px-2 py-1 text-green-500">{{message}}</div>
+				{% endif %}
+				{% if message.tags == 'error' %}
+					<div class="px-2 py-1 bg-red-500">{{message}}</div>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+</section>
+<!-- prettier-ignore -->
+{% endblock contents %}

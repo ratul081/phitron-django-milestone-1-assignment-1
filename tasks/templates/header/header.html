@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %} {% endblock title %}</title>
+
+    <!-- css link -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/output.css' %}" />
+  </head>
+  <body class="bg-gray-50">
+    <header class="py-6">
+      <div class="flex items-center justify-between max-w-[1200px] mx-auto">
+        <div>
+          <a
+            href="{% url 'today-tasks' %}"
+            class="text-lg lg:text-3xl font-semibold"
+            >Event Manage</a
+          >
+        </div>
+
+        <div class="lg:flex md:flex items-center gap-3">
+          <a
+            href="{% url 'admin-dashboard' %}"
+            class="lg:ml-3 md:ml-3 font-semibold text-xl lg:text-2xl hover:text-red-800"
+            >Dashboard</a
+          >
+          <form action="{% url 'add-category' %}" method="POST">
+            {% csrf_token %}
+            <button class="px-3 py-1 font-semibold text-xl hover:text-red-800">
+              Add Category
+            </button>
+          </form>
+
+          <form action="{% url 'create-event' %}" method="POST">
+            {% csrf_token %}
+            <button class="px-3 py-1 font-semibold text-xl hover:text-red-800">
+              Create Event
+            </button>
+          </form>
+
+          <form action="{% url 'add-participant' %}" method="POST">
+            {% csrf_token %}
+            <button class="px-3 py-1 font-semibold text-xl hover:text-red-800">
+              Add Participant
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-[1200px] mx-auto">
+      {% block contents %}
+      {% endblock contents %}
+    </main>
+  </body>
+</html>
